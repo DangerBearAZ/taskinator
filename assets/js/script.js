@@ -1,3 +1,4 @@
+
 var formE1 = document.querySelector("#task-form");
 var tasksToDoE1 = document.querySelector("#tasks-to-do");
 
@@ -37,5 +38,3 @@ tasksToDoE1.appendChild(listItemE1);
   }
 
  formE1.addEventListener("submit", taskFormHandler);
-
-  
