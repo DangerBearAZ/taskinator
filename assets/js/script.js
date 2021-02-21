@@ -5,21 +5,16 @@ var taskFormHandler = function(event) {
   event.preventDefault();
 var taskNameInput = document.querySelector("input[name='task-name']").value;
 var taskTypeInput = document.querySelector("select[name='task-type']").value;
-
-//ask bcs had me change it to get elementby ID
-//var taskNameInput = document.getElementById("taskName").value;
-//var taskTypeInput = document.getElementById("taskType").value;
-
-//console.log(taskTypeInput, taskNameInput)
-
-//package up data as an oject
 var taskDataObj = {
   name: taskNameInput,
   type: taskTypeInput
-
   }; 
-
   createTaskE1(taskDataObj);
+  if(!taskNameInput || !taskTypeInput) { 
+    alert("You need to fill out the task form!");
+    return false;
+  }
+  formE1.reset();
 };
 
   var createTaskE1 = function (taskDataObj){
