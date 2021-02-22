@@ -2,6 +2,7 @@
 var formE1 = document.querySelector("#task-form");
 var tasksToDoE1 = document.querySelector("#tasks-to-do");
 var taskIdCounter = 0;
+var pageContentE1 = document.querySelector("#page-content");
 
 var taskFormHandler = function(event) { 
   event.preventDefault();
@@ -48,14 +49,14 @@ taskIdCounter++;
   };
 
  
- var createTaskActions = function(taskID){
+ var createTaskActions = function(taskId){
   var actionContainerE1 = document.createElement("div");
   actionContainerE1.className = "task-actions";
   //create edit button
   var editButtonE1 = document.createElement("button");
   editButtonE1.textContent = "Edit";
   editButtonE1.className = "btn edit-btn";
-  editButtonE1.setAttribute("data-task-id", taskID);
+  editButtonE1.setAttribute("data-task-id", taskId);
 
   actionContainerE1.appendChild(editButtonE1);
 
@@ -63,14 +64,14 @@ taskIdCounter++;
   var deleteButtonE1 = document.createElement("button");
   deleteButtonE1.textContent = "Delete";
   deleteButtonE1.className = "btn delete-btn";
-  deleteButtonE1.setAttribute("data-task-id", taskID);
+  deleteButtonE1.setAttribute("data-task-id", taskId);
 
   actionContainerE1.appendChild(deleteButtonE1);
 
   var statusSelectE1 = document.createElement("select");
   statusSelectE1.className = "select-status";
   statusSelectE1.setAttribute("name", "staus-change");
-  statusSelectE1.setAttribute("data-task-id", taskID);
+  statusSelectE1.setAttribute("data-task-id", taskId);
 
   actionContainerE1.appendChild(statusSelectE1);
 
@@ -88,4 +89,24 @@ taskIdCounter++;
  };
  
   formE1.addEventListener("submit", taskFormHandler);
+
+var taskButtonhHandler = function(event){
+  console.log(event.target);
+  if (event.target.matches(".delete-btn")) {
+    //get the element's task id 
+    var taskId = event.target.getAttribute("data-task-id");
+    deleteTask(taskId);
+  }
+
+};
+
+var deleteTask = function(taskId){
+  var taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
+  console.log(taskSelected);
+  taskSelected.remove();
+
+};
+
+  pageContentE1.addEventListener("click", taskButtonhHandler);
+
 
